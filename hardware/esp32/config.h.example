@@ -1,0 +1,58 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+// =========================================================================
+// AquaWatch AI - ESP32 Hardware Configuration Template
+// Copy this file to "config.h" and enter your local Wi-Fi & Backend credentials
+// =========================================================================
+
+// Wi-Fi Network Credentials
+#define WIFI_SSID       "YOUR_WIFI_SSID"
+#define WIFI_PASSWORD   "YOUR_WIFI_PASSWORD"
+
+// AquaWatch AI FastAPI Backend Server URL
+// IMPORTANT: Use your computer's local LAN IP (e.g. 192.168.1.100), NOT "localhost" or "127.0.0.1"
+#define SERVER_URL      "http://192.168.1.100:8000/iot/readings"
+#define REGISTER_URL    "http://192.168.1.100:8000/iot/devices/register"
+
+// Hardware Identity & Security
+#define DEVICE_ID       "ESP32-NODE-01"
+#define DEVICE_NAME     "AquaWatch Field Node #1"
+#define LOCATION_NAME   "Main Storage Reservoir"
+#define API_KEY         "aquawatch-secret-key-2026"
+#define FIRMWARE_VER    "1.0.0"
+
+// Telemetry Timing (Milliseconds)
+#define TELEMETRY_INTERVAL_MS  10000  // Send telemetry every 10 seconds
+
+// =========================================================================
+// Sensor GPIO Pin Assignments (ADC1 Pins Only - ADC2 is blocked during Wi-Fi)
+// =========================================================================
+// ADC1 Pins on ESP32: GPIO 32, 33, 34, 35, 36 (VP), 39 (VN)
+#define PIN_PH_SENSOR         34  // Analog Input (ADC1_CH6)
+#define PIN_TDS_SENSOR        35  // Analog Input (ADC1_CH7)
+#define PIN_TURBIDITY_SENSOR  32  // Analog Input (ADC1_CH4)
+#define PIN_DS18B20_TEMP      4   // Digital 1-Wire Pin (Requires 4.7k pull-up to 3.3V)
+#define PIN_STATUS_LED        2   // Built-in onboard Blue LED
+
+// =========================================================================
+// Sensor Signal Calibration Constants
+// Calibrate these with standard buffer solutions (pH 4.01, 7.00; TDS 500ppm)
+// =========================================================================
+// Reference Voltage (ESP32 ADC is calibrated against 3.3V)
+#define ESP32_VREF            3.3f
+#define ADC_RESOLUTION        4095.0f
+
+// pH Sensor (Analog pH-4502C or DFRobot SEN0161)
+// pH = 7.0 + ((V_neutral - V_measured) / slope)
+#define PH_VOLTAGE_AT_7       2.50f   // Voltage measured in pH 7.0 buffer
+#define PH_SLOPE              0.18f   // Volts per pH unit change
+
+// TDS Sensor (DFRobot Gravity Analog TDS Meter SEN0244)
+#define TDS_CALIBRATION_FACTOR 0.5f
+
+// Turbidity Sensor (DFRobot Gravity SEN0189 / TSW-30)
+// High voltage ~ 4.2V/3.0V = Clean water; Low voltage < 2.5V = Murky water
+#define TURBIDITY_CLEAR_VOLTAGE 3.0f
+
+#endif // CONFIG_H

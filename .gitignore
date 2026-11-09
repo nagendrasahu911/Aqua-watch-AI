@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+frontend/dist/
+dist/
+
+# Machine Learning Artifacts & Large Datasets (keep sample templates only)
+backend/models/*.pkl
+backend/models/*.joblib
+backend/models/*.onnx
+backend/data/*.csv
+backend/data/*.parquet
+!backend/data/sample_water_potability.csv
+
+# Generated Reports
+backend/reports/*.pdf
+backend/reports/*.html
+
+# Database
+*.sqlite3
+*.db
+backend/database/*.db
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

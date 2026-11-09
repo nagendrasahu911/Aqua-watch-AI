@@ -1,0 +1,15 @@
+{
+  "name": "aquawatch-ai",
+  "version": "1.0.0",
+  "description": "AquaWatch AI – Smart Water Quality Intelligence Platform",
+  "scripts": {
+    "dev": "concurrently -k -n \"BACKEND,FRONTEND\" -c \"cyan,magenta\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "powershell -Command \"$env:PYTHONPATH='.'; & 'C:\\Users\\samee\\AppData\\Local\\Programs\\Python\\Python314\\python.exe' -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "train:ml": "powershell -Command \"$env:PYTHONPATH='.'; & 'C:\\Users\\samee\\AppData\\Local\\Programs\\Python\\Python314\\python.exe' backend/ml/train_model.py\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
